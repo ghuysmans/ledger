@@ -23,5 +23,6 @@ if [ ! -f "$CLEAN" -o "$CLEAN" -ot "$3" ]; then
 	tee "$CLEAN" >/dev/null
 fi
 
-ledger convert -f "$1" --account "$2" \
-	--input-date-format "%d/%m/%Y" --rich-data "$CLEAN"
+ledger convert -f "$1" --account "$2" --invert --rich-data \
+	--input-date-format "%d/%m/%Y" "$CLEAN" |
+ledger print -f - -S date

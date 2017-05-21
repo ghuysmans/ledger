@@ -1,0 +1,26 @@
+2017-01-01 Opening
+	Assets:Bank				$1000
+	Equity
+
+2017-05-17 Restaurant
+	Assets:Reimbursements:Toto		$5
+	Assets:Bank
+
+2017-05-18 Lion
+	Expenses:Food:Lion			$100
+	Assets:Bank
+
+2017-05-18 Cat
+	Expenses:Food:Cat			$10
+	Assets:Bank
+
+2017-05-18 Cat
+	Assets:Fridge				2 CF
+	Shop:HappyCat
+2017-05-19 Rot
+	Assets:Losses:Expired			1 CF
+	Assets:Fridge
+
+2017-05-20 Toto
+	Assets:Bank				$5
+	Assets:Reimbursements:Toto

@@ -6,15 +6,13 @@ fi
 
 CLEAN="$3.clean"
 
-if [ ! -f "$CLEAN" ]; then
-	./anon.sh <"$3" |
-	#replace the header
-	(echo ";;;;code;;desc;date;amount;"; tail -n +2) |
-	#separators
+if [ ! -f "$CLEAN" -o "$CLEAN" -ot "$3" ]; then
+	sed "s/\r/\n/g" <"$3" | #Mac to UNIX line endings
+	./anon.sh | #remove the unique name & account number
+	(echo ";;;;code;;desc;date;amount;"; tail -n +2) | #header
 	sed s/,/./g | #decimal separator
 	sed "s/; \\+/,/g" | #remove prefix whitespaces
 	sed "s/;/,/g" | #avoid crashing Ledger
-	#cleanup
 	sed "s/ PAR LES SERVICES INTERNET//" | #garbage
 	sed "s/,PAIEMENT ACHAT.* HEURES. \\?/,/" | #type + date
 	sed "s/ AVEC CARTE BANCAIRE[^,]*//" | #I only have one card

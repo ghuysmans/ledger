@@ -1,0 +1,18 @@
+D 1000,00€
+
+payee UMONS
+	alias ^CF-UNIVERSITE MONS
+account Income:University
+	payee ^UMONS$
+	assert amount<0
+
+payee AD Delhaize
+	alias ^S.A. VAMODIS AD
+
+account Expenses:Food
+	payee Delhaize
+	payee Intermarche
+
+= Expenses:Food
+	Assets:Reimbursements:Mum:Food	1
+	$account	-1

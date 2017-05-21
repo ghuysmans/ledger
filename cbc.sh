@@ -1,14 +1,19 @@
 #!/bin/sh
 if [ ! -f "$1" -o -z "$2" -o -z "$3" ]; then
-	echo usage: $0 book.dat Assets:Bank input.csv >&2
+	echo "usage: $0 book.dat Assets:Bank input.csv [prefilter.sh]" >&2
 	exit 1
 fi
 
+if [ -z "$4" ]; then
+	PREFILTER=cat
+else
+	PREFILTER="$4"
+fi
 CLEAN="$3.clean"
 
 if [ ! -f "$CLEAN" -o "$CLEAN" -ot "$3" ]; then
 	sed "s/\r/\n/g" <"$3" | #Mac to UNIX line endings
-	./anon.sh | #remove the unique name & account number
+	$PREFILTER |
 	(echo ";;;;code;;desc;date;amount;"; tail -n +2) | #header
 	sed s/,/./g | #decimal separator
 	sed "s/; \\+/,/g" | #remove prefix whitespaces

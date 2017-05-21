@@ -1,0 +1,4 @@
+i 2017-01-01 08:00:00 Work:CompanyA:ProjectA
+o 2017-01-01 09:40:00 Work:CompanyA:ProjectA
+i 2017-01-01 10:00:00 Work:CompanyA:ProjectB
+o 2017-01-01 12:00:00 Work:CompanyA:ProjectB

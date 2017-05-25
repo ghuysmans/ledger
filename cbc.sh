@@ -28,6 +28,7 @@ if [ ! -f "$CLEAN" -o "$CLEAN" -ot "$3" ]; then
 	tee "$CLEAN" >/dev/null
 fi
 
+DATE="--date-format %Y/%m/%d" #avoid .ledgerrc's influence
 ledger convert -f "$1" --account "$2" --invert --rich-data \
-	--input-date-format "%d/%m/%Y" "$CLEAN" |
-ledger print -f - -S date
+	--input-date-format "%d/%m/%Y" $DATE "$CLEAN" |
+ledger print $DATE -f - -S date

@@ -14,7 +14,7 @@ CLEAN="$3.clean"
 if [ ! -f "$CLEAN" -o "$CLEAN" -ot "$3" ]; then
 	sed "s/\r/\n/g" <"$3" | #Mac to UNIX line endings
 	$PREFILTER |
-	(echo ";;;;code;;desc;date;amount;"; tail -n +2) | #header
+	(echo ";;;;code;date;desc;;amount;"; tail -n +2) | #header
 	sed s/,/./g | #decimal separator
 	sed "s/; \\+/,/g" | #remove prefix whitespaces
 	sed "s/;/,/g" | #avoid crashing Ledger
